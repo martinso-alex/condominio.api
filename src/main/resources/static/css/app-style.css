@@ -1,0 +1,23 @@
+#api{
+	font-weight: bold;
+}
+
+#tables{
+	width: 70%;
+	margin: auto;
+	display: none;
+}
+
+h1{
+	text-align: center;
+	margin: 50px;
+}
+
+#json{
+	margin-bottom: 50px;
+}
+
+pre{
+	padding: 50px;
+	padding-left: 25%;
+}

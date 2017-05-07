@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html ng-app="CondominioAPI">
+	<head>
+		<meta charset="UTF-8">
+		<title>CondominioAPI</title>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" href="css/app-style.css">
+	</head>
+	
+	<body ng-controller="APIController">
+
+		<nav class="navbar navbar-default">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+						data-target="#myNavbar">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="">Condominio<span id="api">API</span></a>
+				</div>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="" ng-click="acessoTag()">TAG</a></li>
+						<li><a href="" ng-click="acessoDigital()">DIGITAL</a></li>
+						<li><a href="" ng-click="acessoPortaria()">PORTARIA</a></li>
+						<li><a href="" ng-click="acessoGaragem()">GARAGEM</a></li>
+						<li><a href="" ng-click="acessoExterno()">EXTERNOS</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	
+		<div id="tudo">
+		
+			<div id="tables">
+				<h1>{{titulo}}</h1>
+			
+				<table class="table table-striped" ng-if="tag">
+					<thead>
+						<tr>
+							<th>CPF</th>
+							<th>TAG</th>
+							<th>Apto</th>
+							<th>Nome</th>
+							<th>Horário</th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						<tr ng-repeat="acesso in acessos">
+							<td>{{acesso.moradoridMORADOR.cpf}}</td>
+							<td>{{acesso.moradoridMORADOR.tag}}</td>
+							<td>{{acesso.moradoridMORADOR.aptoidAPTO.idAPTO}}</td>
+							<td>{{acesso.moradoridMORADOR.nome}}</td>
+							<td>{{acesso.hora | date: "dd/MM/yy HH:mm"}}</td>
+						</tr>
+					</tbody>
+				</table>
+				
+				<table class="table table-striped" ng-if="digital">
+					<thead>
+						<tr>
+							<th>CPF</th>
+							<th>Apto</th>
+							<th>Nome</th>
+							<th>Horário</th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						<tr ng-repeat="acesso in acessos">
+							<td>{{acesso.moradoridMORADOR.cpf}}</td>
+							<td>{{acesso.moradoridMORADOR.aptoidAPTO.idAPTO}}</td>
+							<td>{{acesso.moradoridMORADOR.nome}}</td>
+							<td>{{acesso.hora | date: "dd/MM/yy HH:mm"}}</td>
+						</tr>
+					</tbody>
+				</table>
+				
+				<table class="table table-striped" ng-if="portaria">
+					<thead>
+						<tr>
+							<th>CPF</th>
+							<th>Apto</th>
+							<th>Morador</th>
+							<th>Porteiro</th>
+							<th>Horário</th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						<tr ng-repeat="acesso in acessos">
+							<td>{{acesso.moradoridMORADOR.cpf}}</td>
+							<td>{{acesso.moradoridMORADOR.aptoidAPTO.idAPTO}}</td>
+							<td>{{acesso.moradoridMORADOR.nome}}</td>
+							<td>{{acesso.funcionarioidFUNCIONARIO.nome}}</td>
+							<td>{{acesso.hora | date: "dd/MM/yy HH:mm"}}</td>
+						</tr>
+					</tbody>
+				</table>
+				
+				<table class="table table-striped" ng-if="garagem">
+					<thead>
+						<tr>
+							<th>Controle</th>
+							<th>Placa</th>
+							<th>Apto</th>
+							<th>Horário</th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						<tr ng-repeat="acesso in acessos">
+							<td>{{acesso.controleidCONTROLE.idCONTROLE}}</td>
+							<td>{{acesso.controleidCONTROLE.placa}}</td>
+							<td>{{acesso.controleidCONTROLE.aptoidAPTO.idAPTO}}</td>
+							<td>{{acesso.hora | date: "dd/MM/yy HH:mm"}}</td>
+						</tr>
+					</tbody>
+				</table>
+				
+				<table class="table table-striped" ng-if="externos">
+					<thead>
+						<tr>
+							<th>CPF</th>
+							<th>Nome</th>
+							<th>Empresa</th>
+							<th>Horário</th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						<tr ng-repeat="acesso in acessos">
+							<td>{{acesso.externoidEXTERNO.cpf}}</td>
+							<td>{{acesso.externoidEXTERNO.nome}}</td>
+							<td>{{acesso.externoidEXTERNO.empresa}}</td>
+							<td>{{acesso.hora | date: "dd/MM/yy HH:mm"}}</td>
+						</tr>
+					</tbody>
+				</table>
+				
+				<h1>JSON</h1>
+				
+				<div id="json"><pre>{{acessos | json: 8}}</pre></div>
+				
+			</div>
+		
+		</div>
+
+
+	<script src="js/jquery.js"></script>
+	<script src="js/angular.js"></script>
+	<script src="js/angular-app.js"></script>
+	
+	</body>
+</html>
